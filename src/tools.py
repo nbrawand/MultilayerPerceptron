@@ -3,13 +3,17 @@
 #
 # Nicholas Brawand - nicholasbrawand@gmail.com
 #
+import os
+import struct
+import numpy as np
+import urllib.request as urllib2
+import gzip
+import matplotlib.pyplot as plt
 
 
 def DownloadData(link):
     """Downloads file from link and returns the file name."""
     # import urllib2
-    import urllib.request as urllib2
-    import os
 
     outFil = os.path.basename(link)
 
@@ -32,18 +36,12 @@ def DownloadData(link):
 
 def UnzipFil(inFil, outFil):
     """uncompress inFil and write to outFil"""
-    import gzip
     inF = gzip.open(inFil, 'rb')
     outF = open(outFil, 'wb')
     outF.write(inF.read())
     inF.close()
     outF.close()
     return
-
-import os
-import struct
-import numpy as np
-
 
 def load_mnist_images(path, lda):
     """
@@ -77,7 +75,6 @@ def load_mnist_labels(path):
 
 def PlotGrid(nrows, ncols, imgs, outFil):
     """save a grid of images to outFil."""
-    import matplotlib.pyplot as plt
 
     fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=True, sharey=True,)
     ax = ax.flatten()
@@ -89,5 +86,5 @@ def PlotGrid(nrows, ncols, imgs, outFil):
         ax[0].set_xticks([])
         ax[0].set_yticks([])
         plt.tight_layout()
-        plt.savefig(outFil, dpi=300)
-    return
+        fig = plt.savefig(outFil, dpi=300)
+    return fig
