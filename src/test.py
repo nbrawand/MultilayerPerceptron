@@ -8,7 +8,7 @@ import tools
 
 def CreateSamplePlot(X_train, y_train):
     """Plot the first 10 samples in X_train with unique y_train"""
-    outFil = './figures/mnist_all.png'
+    outFil = '../figures/mnist_all.png'
     print('testing image import see: ', outFil)
     imgs = []
     for i in range(10):
