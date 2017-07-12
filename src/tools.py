@@ -45,21 +45,49 @@ import struct
 import numpy as np
 
 
-def load_mnist(path, kind='train'):
-    """LoadMNISTdatafrom`path`"""
-    labels_path = os.path.join(path,'%s-labels-idx1-ubyte' % kind)
-    images_path = os.path.join(path,'%s-images-idx3-ubyte' % kind)
-
-    with open(labels_path, 'rb') as lbpath:
-        magic, n = struct.unpack('>II',
-        lbpath.read(8))
-        labels = np.fromfile(lbpath,
-        dtype=np.uint8)
+def load_mnist_images(path, lda):
+    """
+    Load MNIST image data from path and return the images
+    lda is the leading dimension for reshape of the image.
+    normally lda is the len of the labels
+    """
+    images_path = os.path.join(path)
 
     with open(images_path, 'rb') as imgpath:
         magic, num, rows, cols = struct.unpack(">IIII",
-        imgpath.read(16))
+                                               imgpath.read(16))
         images = np.fromfile(imgpath,
-        dtype=np.uint8).reshape(len(labels), 784)
+                             dtype=np.uint8).reshape(lda, 784)
 
-    return images,labels
+    return images
+
+
+def load_mnist_labels(path):
+    """Load MNIST label data from path and return the labels"""
+    labels_path = os.path.join(path)
+
+    with open(labels_path, 'rb') as lbpath:
+        magic, n = struct.unpack('>II',
+                                 lbpath.read(8))
+        labels = np.fromfile(lbpath,
+                             dtype=np.uint8)
+
+    return labels
+
+
+def PlotGrid(nrows, ncols, imgs, outFil):
+    """save a grid of images to outFil."""
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=True, sharey=True,)
+    ax = ax.flatten()
+
+    for i in range(10):
+        img = imgs[i]
+        ax[i].imshow(img, cmap='Greys', interpolation='nearest')
+
+        ax[0].set_xticks([])
+        ax[0].set_yticks([])
+        plt.tight_layout()
+        plt.savefig(outFil, dpi=300)
+    return

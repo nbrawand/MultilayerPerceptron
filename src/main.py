@@ -5,6 +5,7 @@
 #
 import tools
 import os
+import test
 
 dataUrlList = [
     "http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz",
@@ -21,14 +22,27 @@ for l in dataUrlList:
         outFils.append(tools.DownloadData(l))
     else:
         print(os.path.basename(l), 'already exists')
+        outFils.append(tools.DownloadData(l))
 
 # unzip data
+imgFils = []
 for l in outFils:
-    newFil = l.replace('.gz','')
+    newFil = l.replace('.gz', '')
+
     if not os.path.isfile(newFil):
         tools.UnzipFil(l, newFil)
     else:
         print(newFil, 'already exists')
 
-X_train, y_train = tools.load_mnist('', kind='train')
-print('Rows: %d, columns: %d' % (X_train.shape[0], X_train.shape[1]))
+    imgFils.append(newFil)
+
+# imgFils are in the following order:
+#
+# imgFils = 'train-images-idx3-ubyte', 'train-labels-idx1-ubyte',
+#           't10k-images-idx3-ubyte', 't10k-labels-idx1-ubyte'
+
+y_train = tools.load_mnist_labels(imgFils[1])
+X_train = tools.load_mnist_images(imgFils[0], len(y_train))
+
+# plot first few images to test import
+test.CreateSamplePlot(X_train, y_train)
