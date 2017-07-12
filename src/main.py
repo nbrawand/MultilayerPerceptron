@@ -46,3 +46,5 @@ X_train = tools.load_mnist_images(imgFils[0], len(y_train))
 
 # plot first few images to test import
 test.CreateSamplePlot(X_train, y_train)
+test.PlotSingleKind(X_train, y_train, 25, 4)
+test.PlotSingleKind(X_train, y_train, 25, 7)

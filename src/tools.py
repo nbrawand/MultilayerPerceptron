@@ -82,7 +82,7 @@ def PlotGrid(nrows, ncols, imgs, outFil):
     fig, ax = plt.subplots(nrows=nrows, ncols=ncols, sharex=True, sharey=True,)
     ax = ax.flatten()
 
-    for i in range(10):
+    for i in range(len(imgs)):
         img = imgs[i]
         ax[i].imshow(img, cmap='Greys', interpolation='nearest')
 
