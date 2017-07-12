@@ -1,4 +1,5 @@
 import numpy as np
+import scipy
 from scipy.special import expit
 import sys
 
@@ -6,7 +7,8 @@ import sys
 class NeuralNetMLP(object):
     """Multi-layer perceptron.
 
-    initial version - python machine learning
+    initial version - python machine learning Sebastian Raschka
+    modified by Nicholas Brawand nicholasbrawand@gmail.com
 
     Parameters
     ------------
