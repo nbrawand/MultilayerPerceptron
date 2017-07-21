@@ -4,7 +4,18 @@
 Downloads/processes data and trains a neural network to identify handwritten digits from NIST (see main.ipynb).
 
 ## Network Features
-The network has a single hidden layer and was created from scratch.
+* single layer
+* sigmoid activation function
 
 ## Author
 Nicholas Brawand - nicholasbrawand@gmail.com
+
+## Todo
+* gradient checking
+* regularization dropout J. Mach. Learn. Res. 15 2014 1929-1958
+* adaptive learning rate
+* stochastic gradient with mini-batch 
+* multilayers... vanishing gradient
+* shuffle training between epochs
+* parallelizing theano
+* data compression?
