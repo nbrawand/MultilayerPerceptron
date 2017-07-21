@@ -1,7 +1,7 @@
 # Multilayer Perceptron for image recognition
 
 ## Description
-Downloads/processes data and trains a neural network to identify handwritten digits from NIST (see main.ipynb).
+Downloads/processes data (MNIST) and trains a neural network to identify handwritten digits (see main.ipynb).
 
 ## Network Features
 * single layer
