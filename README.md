@@ -15,7 +15,8 @@ Nicholas Brawand - nicholasbrawand@gmail.com
 * regularization dropout J. Mach. Learn. Res. 15 2014 1929-1958
 * adaptive learning rate
 * stochastic gradient with mini-batch 
-* multilayers... vanishing gradient
 * shuffle training between epochs
 * parallelizing theano
 * data compression?
+* multilayers... vanishing gradient, deep belief, boltzmann
+* auto encoder?
