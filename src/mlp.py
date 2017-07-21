@@ -19,12 +19,9 @@ class network:
 
     def __init__(self, nFeatures, nOutputs, nHidden=30):
 
-        #self.nOutput = nOutput
         self.nFeatures = nFeatures
         self.nHidden = nHidden
         self.nOutputs = nOutputs
-        #self.epochs = epochs
-        #self.eta = eta
 
         self.InitializeWeights()
 
@@ -44,7 +41,7 @@ class network:
         return self.weights
 
     def train(self, X, labs, epochs, eta):
-        """Train the model.
+        """Train the model. Loop over epochs: Feedforward, backprop.
 
         args
         ----
@@ -72,6 +69,7 @@ class network:
         return self
 
     def AddBiasUnit(self, X, to2ndIndex=True):
+        """Adds the bias unit to 2d matrix X. If to2ndIndex=True, then add to 2nd dim else 1st."""
         if to2ndIndex:
             newX = np.ones((X.shape[0], X.shape[1] + 1))
             newX[:, 1:] = X
@@ -131,7 +129,7 @@ class network:
 
 
     def UpdateWeights(self, a1, z2, a2, z3, a3, onehot, eta):
-        """Updates self.weights
+        """Updates self.weights. Do backprop and update self.weights.
 
         args
         ----
@@ -179,7 +177,7 @@ class network:
 
 
     def Activation(self, Z):
-        """Apply activation function to input"""
+        """Apply activation function to input: expit(x) = 1/(1+exp(-x))"""
         return expit(Z)
 
 
@@ -190,7 +188,7 @@ class network:
 
 
     def InitializeOnehot(self, labs):
-        """Initialize one-hot rep for labels.
+        """Initialize one hot rep for labels.
 
         args
         ----
@@ -210,7 +208,7 @@ class network:
         return onehot
 
     def predict(self, X):
-        """Predict labels
+        """Predict labels. Feedforward X.
 
         args
         ----
